@@ -41,7 +41,7 @@ public class ExceptionController {
     }
 
     /**
-     * 주소값을 공유하지 못하는 경우 - 대응 완료
+     * 주소값을 공유하지 못하는 경우 - throw 매개면수로 초기화 해 준 뒤 getter로 꺼내어 다시 던진다
      */
     @GetMapping("/exceptionC")
     public void exceptionC() {
