@@ -31,4 +31,9 @@ public class ExceptionController {
         exceptionService.exceptionC();
     }
 
+    @GetMapping("/exceptionD")
+    public void exceptionD() {
+        exceptionService.exceptionD();
+    }
+
 }
