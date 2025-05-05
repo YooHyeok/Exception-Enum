@@ -62,6 +62,18 @@ public class ExceptionService {
 
         }
     }
+
+    public void exceptionD() {
+        try {
+            commonRefactD();
+        } catch (CustomException ce) {
+            throw new CustomException(ce.getStatusEnum());
+        } catch (ServerException se) {
+            throw new ServerException(se.getStatusEnum());
+        } catch (Exception e) {
+
+        }
+    }
     private void commonRefactA(ExcptionStatus statusEnum) {
 
         /* 공통화 메소드 추출된 로직 가정 */
@@ -80,6 +92,13 @@ public class ExceptionService {
         if (statusEnum != ExcptionStatus.PASS) {
             throw new CustomException(statusEnum);
         }
+    }
+
+    private void commonRefactD() {
+
+        /* 공통화 메소드 추출된 로직 가정 */
+
+        ExceptionMapper.throwIf(ExcptionStatus.PASS);
     }
 
 
