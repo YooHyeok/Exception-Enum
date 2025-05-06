@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+
+    <springProperty scope="context" name="PID" source="PID"/>
+
+    <!-- 로그 색상 변환기 -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
+    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+
+    <!-- 일반 로그 패턴 (DEBUG 제외) -->
+    <property name="NORMAL_LOG_PATTERN" value="%blue(%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ}) %clr(%5p) ${PID} --- [%X{loggerName}] [%t] %clr(%-40.40logger.%M\(\)){cyan} : %m%n" />
+
+    <!-- DEBUG 로그 패턴 (파란색) -->
+    <property name="DEBUG_LOG_PATTERN" value="%blue(%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ}) %magenta(%5p) ${PID} --- [%X{loggerName}] [%t] %clr(%-40.40logger.%M\(\)){cyan} : %m%n" />
+
+    <!-- 일반 로그용 콘솔 어펜더 (DEBUG 제외) -->
+    <appender name="CONSOLE_INFO" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${NORMAL_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- DEBUG 로그용 콘솔 어펜더 -->
+    <appender name="CONSOLE_DEBUG" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${DEBUG_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 스프링 관련 로그 레벨 설정 -->
+    <!--<logger name="org.springframework" level="WARN" />
+    <logger name="org.hibernate" level="WARN" />
+    <logger name="org.apache" level="WARN" />
+    <logger name="ch.qos.logback" level="WARN" />-->
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE_INFO" />
+        <appender-ref ref="CONSOLE_DEBUG" />
+    </root>
+</configuration>
