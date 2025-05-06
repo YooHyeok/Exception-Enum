@@ -14,7 +14,10 @@ public class ExceptionMapper {
             final ExcptionStatus status,
             final Supplier<? extends RuntimeException> supplier
     ) {
-        log.debug("ExceptionMapper.throwException({}, {})", status, supplier.get().getClass().getSimpleName());
+        String exceptionName = (supplier != null && supplier.get() != null)
+                ? supplier.get().getClass().getSimpleName()
+                : "null";
+        log.debug("ExceptionMapper.throwException({}, {})", status, exceptionName);
         if (status == ExcptionStatus.PASS && (supplier == null || supplier.get() == null)) return;
         throw supplier.get();
     }
