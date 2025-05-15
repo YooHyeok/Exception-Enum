@@ -6,10 +6,10 @@ public class CustomException extends BaseException {
         super();
     }
 
-    CustomException(ExcptionStatus statusEnum) {
+    public CustomException(ExcptionStatus statusEnum) {
         super(statusEnum);
     }
-    CustomException(ExcptionStatus statusEnum, String details) {
+    public CustomException(ExcptionStatus statusEnum, String details) {
         super(statusEnum, details);
     }
 

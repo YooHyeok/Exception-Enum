@@ -6,10 +6,10 @@ public class ServerException extends BaseException {
         super();
     }
 
-    ServerException(ExcptionStatus statusEnum) {
+    public ServerException(ExcptionStatus statusEnum) {
         super(statusEnum);
     }
-    ServerException(ExcptionStatus statusEnum, String details) {
+    public ServerException(ExcptionStatus statusEnum, String details) {
         super(statusEnum, details);
     }
 
